@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <title>Pertempuran di Tanah Melayu</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: #f0fff0;
+      text-align: center;
+      padding: 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: #fff3e0;
+      border: 3px solid #4e342e;
+      border-radius: 15px;
+      padding: 25px;
+    }
+    .map-area {
+      margin-top: 20px;
+    }
+    .btn {
+      padding: 10px 20px;
+      background-color: #2e7d32;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      margin: 5px;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background-color: #1b5e20;
+    }
+    .log {
+      background: #eeeeee;
+      border: 2px dashed #999;
+      padding: 10px;
+      margin-top: 15px;
+      height: 100px;
+      overflow-y: auto;
+    }
+    .battle-img {
+      width: 100%;
+      border-radius: 10px;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🇲🇾 Pertempuran Tanah Melayu: Askar vs Penjajah</h1>
+    <p>Pilih lokasi dan mulakan pertempuran sejarah!</p>
+
+    <div class="map-area">
+      <button class="btn" onclick="serang('Pasir Salak')">🗡️ Pasir Salak</button>
+      <button class="btn" onclick="serang('Kuala Kangsar')">🛡️ Kuala Kangsar</button>
+      <button class="btn" onclick="serang('Taiping')">🔥 Taiping</button>
+    </div>
+
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Perak_location_map.svg/600px-Perak_location_map.svg.png" class="battle-img" alt="Peta Perak" />
+
+    <div id="log" class="log"></div>
+    <div id="skor" style="font-size: 18px; margin-top: 10px;"></div>
+  </div>
+
+  <script>
+    let totalSkor = 0;
+    let misiDilaksana = 0;
+
+    function serang(lokasi) {
+      const hasilRawak = Math.floor(Math.random() * 100) + 1;
+      let keputusan, tambahan;
+
+      if (hasilRawak > 60) {
+        keputusan = `Kemenangan di ${lokasi}!`;
+        tambahan = 20;
+      } else if (hasilRawak > 30) {
+        keputusan = `Pertempuran sengit di ${lokasi}.`;
+        tambahan = 10;
+      } else {
+        keputusan = `Kekalahan di ${lokasi} 😢.`;
+        tambahan = 0;
+      }
+
+      misiDilaksana++;
+      totalSkor += tambahan;
+
+      document.getElementById("log").innerHTML += `<p>${keputusan} (+${tambahan} mata)</p>`;
+      document.getElementById("skor").innerHTML = `🎖️ Skor Terkumpul: <strong>${totalSkor}</strong> (${misiDilaksana} misi)`;
+    }
+  </script>
+</body>
+</html>
